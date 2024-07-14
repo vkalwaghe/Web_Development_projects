@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanjivani University</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        header {
+            background: #7a0000;
+            color: #fff;
+            padding-top: 20px;
+            min-height: 150px;
+            border-bottom: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header .branding {
+            display: flex;
+            align-items: center;
+        }
+
+        header img {
+            height: 100px; /* Change logo height here */
+            margin-right: 20px;
+            /* To adjust logo position, you can use margin properties */
+        }
+
+        header .branding h1 {
+            color: #fff;
+            font-size: 50px;
+            text-transform: uppercase;
+        }
+
+        header nav {
+             margin-top: 10px;
+             display: flex;
+             justify-content: flex-end; /* Align items to the right */
+        }
+
+        header nav ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        header nav ul li {
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+
+        #hero {
+            position: relative;
+            background: #ffe5e4;
+            color: black;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        
+	#hero h2 {
+    		font-size: 40px;
+    		margin-bottom: 20px;
+    		margin: 0 auto; /* Center horizontally */
+    		width: 60%; /* Adjust width as needed */
+	}
+
+	#hero p {
+	    font-size: 20px;
+	    margin: 0 auto; /* Center horizontally */
+	    width: 60%; /* Adjust width as needed */
+	}
+	
+		#left-photo {
+    		position: absolute;
+    		top: 50%;
+    		left: 8%;
+    		transform: translateY(-50%);
+    		z-index: 1;
+    		width: 300px;
+    		height: auto;
+    		border-radius: 10px;
+    		box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+		}
+
+        #building-image {
+            position: absolute;
+            top: 48%;
+            right: 5%;
+            transform: translateY(-50%);
+            z-index: 1;
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        section {
+            padding: 20px 0;
+        }
+
+        section#about,
+        section#courses,
+        section#admissions {
+            background: #ffffff;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        section#about p,
+        section#admissions p {
+            margin: 20px 0;
+        }
+
+        section#courses .course-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        section#courses .course-item {
+            background: #FFA500;
+            color: #000;
+            flex: 1 1 calc(33.333% - 20px);
+            margin: 10px;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        section#admissions a.btn {
+            display: inline-block;
+            background: #8B0000;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+
+        section#admissions a.btn:hover {
+            background: #600000;
+        }
+
+        .students {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .student {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .student-photo {
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+
+        .student-info {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: calc(100% - 290px); /* Adjust width to fit beside the photo */
+            opacity: 0;
+            transform: translateX(-100%);
+            transition: opacity 1.2s ease, transform 1.2s ease;
+        }
+
+        .student.middle .student-photo {
+            order: 2;
+            margin-right: 0;
+            margin-left: 20px;
+        }
+
+        .student.middle .student-info {
+            order: 1;
+            transform: translateX(100%);
+        }
+
+        .student.visible .student-info {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        footer {
+            background: #8B0000;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer ul li {
+            display: inline;
+            padding: 0 10px;
+        }
+
+        footer ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+
+            header nav {
+                text-align: center;
+            }
+
+            header nav ul li {
+                display: block;
+                padding: 10px 0;
+            }
+
+            section#courses .course-item {
+                flex: 1 1 100%;
+            }
+
+            #building-image {
+                display: none; /* Hide building image on small screens */
+            }
+
+            .student {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .student-info {
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .student.middle .student-photo {
+                margin-left: 0;
+            }
+
+            .student.middle .student-info {
+                transform: translateX(-100%);
+            }
+        }
+
+        #contact {
+            background: #f9f9f9;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        #contact h2 {
+            margin-bottom: 20px;
+        }
+
+        #contact p {
+            margin-bottom: 20px;
+        }
+
+        #contact ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #contact ul li {
+            margin-bottom: 10px;
+        }
+
+        #contact ul li a {
+            color: #8B0000;
+            text-decoration: none;
+        }
+
+        #contact ul li a:hover {
+            text-decoration: underline;
+        }
+	
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="branding">
+                <img src="https://media.licdn.com/dms/image/D4D0BAQF9wQQLe7oanQ/company-logo_200_200/0/1714555993097/sanjivani_university_logo?e=1726704000&v=beta&t=5NRhanGUSrVKYSqXGUt8rCWWiaxNPQhYle1-YOcHfpU" alt="Sanjivani University Logo">
+                <h1>Sanjivani University</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#admissions">Admissions</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+	 <img id="left-photo" src="https://sanjivani.org.in/wp-content/uploads/2023/06/home23.png" alt="Left Photo">
+        <div class="container">
+            <h2>Excellence in Education</h2>
+            <p>Empowering students to achieve their full potential.</p>
+        </div>
+    </section>
+    <img id="building-image" src="https://sanjivanisims.org.in/wp-content/uploads/2023/08/img-1-2.jpeg" alt="Building Image">
+
+    <section id="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>Sanjivani University is committed to providing quality education and fostering research and innovation. Our mission is to nurture students with knowledge, skills, and values to thrive in their careers and contribute to society.</p>
+        </div>
+    </section>
+    <section id="courses">
+        <div class="container">
+            <h2>Courses Offered</h2>
+            <div class="course-list">
+                <div class="course-item">B.TECH</div>
+                <div class="course-item">M.TECH</div>
+                <div class="course-item">BBA</div>
+                <div class="course-item">MBA </div>
+                <div class="course-item">B.COM</div>
+                <div class="course-item">M.COM</div>
+		    <div class="course-item">BA</div>
+                <div class="course-item">MA</div>
+                <div class="course-item">PHD</div>
+
+            </div>
+        </div>
+    </section>
+    <section id="admissions">
+        <div class="container">
+            <h2>Admissions</h2>
+            <p>Join Sanjivani University to unlock a world of opportunities. Admissions are now open for the upcoming academic year. Apply now to secure your place.</p>
+            <a href="admissions.html" class="btn">Apply Now</a>
+        </div>
+    </section>
+    <section id="students">
+        <div class="container">
+            <h2>Meet Our Students</h2>
+            <div class="students">
+                <div class="student">
+                    <img src="https://media.licdn.com/dms/image/D4D22AQGLS4Vy9_yaFA/feedshare-shrink_800/0/1714804002744?e=2147483647&v=beta&t=xkHlFAV9PvoQ9RLwdY0W3M-4DT8CVMO1WEiWAd8EE8w" alt="Student 1" class="student-photo">
+                    <div class="student-info">
+                        <h3>Jagdhane Rahul</h3>
+                        <p>Information Technology student excelling in innovative projects and research.<br>
+					Placed in Juspay Technologies at the dream package of 27 LPA.</p>
+                    </div>
+                </div>
+                <div class="student middle">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSc3jYoNJ6d1sIjaIQY6d2jyKHwkgLFSlqGeQ&s" alt="Student 2" class="student-photo">
+                    <div class="student-info">
+                        <h3>Jadhav Vishal</h3>
+                        <p>Information Technology student with a focus on entrepreneurship and leadership.<br>
+					Placed in Reputed MNC - Zscaler at the salary package of 19.6 LPA</p>
+                    </div>
+                </div>
+                <div class="student">
+                    <img src="https://www.sanjivanicoe.org.in/images/Jagdish_Shinde.jpg" alt="Student 3" class="student-photo">
+                    <div class="student-info">
+                        <h3>Shinde Jagdish</h3>
+                        <p>Electrical engineeting student dedicated to improving his skill and capabilities.<br>
+					Placed in Zuiko corporation (japan) at the package of 20 LPA.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>For inquiries and more information, feel free to contact us:</p>
+            <ul>
+                <li><a href="https://www.sanjivanicoe.org.in/">Sanjivani College of Engineering</a></li>
+                <li>Email: contact@sanjivaniuniversity.com</li>
+                <li>LinkedIn: <a href="https://www.linkedin.com/in/sanjivani-university-8774772b3?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BOclFzi6VT2GVzEEBfc%2FYYA%3D%3D">LinkedIn</a></li>
+                <li>Instagram: <a href="https://www.instagram.com/sanjivani_university">Instagram</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Sanjivani University. All rights reserved.</p>
+            <nav>
+                <ul>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms of Service</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const students = document.querySelectorAll('.student');
+
+            function checkVisibility() {
+                const windowHeight = window.innerHeight;
+                const triggerPoint = windowHeight * 0.75; // Adjust trigger point as needed
+
+                students.forEach(student => {
+                    const rect = student.getBoundingClientRect();
+                    if (rect.top < triggerPoint && rect.bottom > 0) {
+                        student.classList.add('visible');
+                    } else {
+                        student.classList.remove('visible');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', checkVisibility);
+            checkVisibility(); // Initial check
+        });
+    </script>
+</body>
+</html>
